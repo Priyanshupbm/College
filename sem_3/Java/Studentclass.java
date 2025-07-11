@@ -1,9 +1,12 @@
 
 class Student {
   
+     String name;
+     int rollno;
+  
      Student(String n,int r){
-      String name = n;
-      int rollno = r;
+      name = n;
+      rollno = r;
     }
     
     void detail(){
@@ -14,7 +17,6 @@ class Student {
 
 public class Studentclass {
     public static void main(String[] args) {
-        System.out.println(" Welcome to the banking\n");
         
         Student s1 = new Student("Ram",4);
         Student s2 = new Student("Shyam",34);
