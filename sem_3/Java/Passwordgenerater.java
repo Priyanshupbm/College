@@ -1,4 +1,7 @@
+
 import java.util.*;
+import java.io.File;
+import java.io.FileWriter;
 
 
 public class Passwordgenerater {
@@ -12,8 +15,8 @@ public class Passwordgenerater {
         String p = "";
         
         for(int i=1;i<=a;i++){
-            c = random.nextInt(2);
-            if(c==1){
+            c = random.nextInt(3);
+            if(c==1 || c==2){
                 c = random.nextInt(27)+65;
                 s = (char) c;
                 p+=Character.toString(s);
@@ -32,7 +35,7 @@ public class Passwordgenerater {
             p+=Integer.toString(c);
         }
 
-        for(int i=1;i<=in;i++){
+        for(int i=1;i<=sy;i++){
             c = random.nextInt(4);
             if(c==0){
                 c = random.nextInt(15)+33;
@@ -76,6 +79,43 @@ public class Passwordgenerater {
     }
 
 
+    public static void save(String p)
+    {
+
+        try {
+            FileWriter Writer = new FileWriter("password.txt",true);
+
+            // Writing File
+            Writer.write(p+"\n");
+            Writer.close();
+            System.out.println("Password is saved !!");
+        } 
+        catch (Exception e) {
+            System.out.println("Try again!!....");
+        }
+        
+    }
+
+
+    public static void load()
+    {
+
+        try {
+            File obj = new File("password.txt");
+
+            Scanner reader = new Scanner(obj);
+            while(reader.hasNextLine()){
+                System.out.println(reader.nextLine());
+            }
+            reader.close();
+        } 
+        catch (Exception e) {
+            System.out.println("Try again!!....");
+        }
+        
+    }
+
+
 
     public static void main(String[] args) {
         
@@ -89,7 +129,7 @@ public class Passwordgenerater {
 
         while(true)
         {
-            System.out.print("\n\nSelect the tasks\n1.Generate password\n2.Load save password\n3.Exit\n        : ");
+            System.out.print("\n\nSelect the tasks\n1.Generate password\n2.Load password \n3.Save password\n4.Exit\n        : ");
             c = scanner.nextInt();
 
             switch(c){
@@ -123,15 +163,23 @@ public class Passwordgenerater {
                     System.out.println("\nThe generate password is "+pass);
                     break;
                 
-                case 2:
+                case 3:
+                    System.out.print("Enter the password to save  : ");
+                    scanner.nextLine();
+                    pass = scanner.nextLine();
+                    save(pass);
                     break;
 
-                case 3:
+                case 2:
+                    load();
+                    break;
+
+                case 4:
                     scanner.close();
                     return;
 
                 default:
-                    System.out.println("\nEnter only number from 1 to 3 ,Try again !!");
+                    System.out.println("\nEnter only number from 1 to 4 ,Try again !!");
 
 
             }
